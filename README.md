@@ -9,3 +9,4 @@ To use the app:
 4. Use `npm test` to run test.
    1. !!! The server need to be offline at the moment of the starting test, because supertest will turn it on automatically.
    2. test scenarions are implemented with `supertest` and `jest`
+5. Use `npm run start:multi` to run app using CLUSTER API.
