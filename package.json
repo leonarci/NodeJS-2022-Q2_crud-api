@@ -7,7 +7,7 @@
     "test": "jest",
     "start:prod": "tsc && node dist/app.js",
     "start:dev": "nodemon src/app/app.ts",
-    "start:multi": "nodemon src/app/app-cluster.ts"
+    "start:multi": "node dist/app-cluster.js"
   },
   "repository": {
     "type": "git",
