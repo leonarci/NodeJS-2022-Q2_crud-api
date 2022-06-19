@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "start:build": "tsc && node dist/app.js",
-    "start:dev": "nodemon src/app/app.ts"
+    "start:prod": "tsc && node dist/app.js",
+    "start:dev": "nodemon src/app/app.ts",
+    "start:multi": "nodemon src/app/app-cluster.ts"
   },
   "repository": {
     "type": "git",

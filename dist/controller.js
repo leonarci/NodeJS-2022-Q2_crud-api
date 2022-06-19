@@ -35,7 +35,7 @@ class Controller {
             if (typeof name !== "string" ||
                 typeof age !== "number" ||
                 !Array.isArray(hobbies)) {
-                reject(new Error("all fields are required"));
+                reject(new errors_1.FieldsRequiredError("invalid data in request"));
             }
             else {
                 let newUser = {
@@ -56,7 +56,6 @@ class Controller {
             else {
                 const { name, age, hobbies } = user;
                 if (name === undefined && age === undefined && hobbies === undefined) {
-                    console.log(23423);
                     reject(new errors_1.FieldsRequiredError);
                 }
                 if (typeof name === "string") {

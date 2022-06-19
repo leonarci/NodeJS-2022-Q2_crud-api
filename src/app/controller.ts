@@ -27,7 +27,6 @@ export class Controller {
   async createUser(user: User): Promise<UserWithUuid> {
     return new Promise((resolve, reject) => {
       const { name, age, hobbies } = user;
-      console.log(name, age, hobbies)
       if (name === undefined || age === undefined || hobbies === undefined) {
         reject(new FieldsRequiredError);
       }
