@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidV4 } from 'uuid';
 import { data, User, UserWithUuid } from './data';
 import { NoUserError, FieldsRequiredError } from './errors';
 
@@ -27,6 +27,9 @@ export class Controller {
   async createUser(user: User): Promise<UserWithUuid> {
     return new Promise((resolve, reject) => {
       const { name, age, hobbies } = user;
+      if (name === undefined || age === undefined || hobbies === undefined) {
+        reject(new FieldsRequiredError);
+      }
       if (typeof name !== "string" ||
         typeof age !== "number" ||
         !Array.isArray(hobbies)) {
@@ -34,7 +37,7 @@ export class Controller {
       }
       else {
         let newUser = {
-          id: uuidv4(),
+          id: uuidV4(),
           ...user
         }
         data.push(newUser)
@@ -50,14 +53,25 @@ export class Controller {
         reject(new NoUserError(`No user with uuid ${id}`))
       } else {
         const { name, age, hobbies } = user;
-        if (typeof name !== "string" ||
-          typeof age !== "number" ||
-          !Array.isArray(hobbies)) {
-          reject(new FieldsRequiredError())
+        if (name === undefined && age === undefined && hobbies === undefined) {
+          console.log(23423)
+          reject(new FieldsRequiredError);
         }
-        foundUser.name = user.name;
-        foundUser.age = user.age;
-        foundUser.hobbies = user.hobbies;
+        if (typeof name === "string") {
+          foundUser.name = name;
+        } else if (name != undefined) {
+          reject(new FieldsRequiredError);
+        }
+        if (typeof age === "number") {
+          foundUser.age = age;
+        } else if (age != undefined) {
+          reject(new FieldsRequiredError);
+        }
+        if (Array.isArray(hobbies)) {
+          foundUser.hobbies = hobbies;
+        } else if (hobbies != undefined) {
+          reject(new FieldsRequiredError);
+        }
         resolve(foundUser);
       }
     })

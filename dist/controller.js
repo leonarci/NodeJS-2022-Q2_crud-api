@@ -29,6 +29,9 @@ class Controller {
     async createUser(user) {
         return new Promise((resolve, reject) => {
             const { name, age, hobbies } = user;
+            if (name === undefined || age === undefined || hobbies === undefined) {
+                reject(new errors_1.FieldsRequiredError);
+            }
             if (typeof name !== "string" ||
                 typeof age !== "number" ||
                 !Array.isArray(hobbies)) {
@@ -52,14 +55,28 @@ class Controller {
             }
             else {
                 const { name, age, hobbies } = user;
-                if (typeof name !== "string" ||
-                    typeof age !== "number" ||
-                    !Array.isArray(hobbies)) {
-                    reject(new errors_1.FieldsRequiredError());
+                if (name === undefined && age === undefined && hobbies === undefined) {
+                    console.log(23423);
+                    reject(new errors_1.FieldsRequiredError);
                 }
-                foundUser.name = user.name;
-                foundUser.age = user.age;
-                foundUser.hobbies = user.hobbies;
+                if (typeof name === "string") {
+                    foundUser.name = name;
+                }
+                else if (name != undefined) {
+                    reject(new errors_1.FieldsRequiredError);
+                }
+                if (typeof age === "number") {
+                    foundUser.age = age;
+                }
+                else if (age != undefined) {
+                    reject(new errors_1.FieldsRequiredError);
+                }
+                if (Array.isArray(hobbies)) {
+                    foundUser.hobbies = hobbies;
+                }
+                else if (hobbies != undefined) {
+                    reject(new errors_1.FieldsRequiredError);
+                }
                 resolve(foundUser);
             }
         });
