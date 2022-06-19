@@ -23,6 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.server = void 0;
 require("dotenv/config");
 const http = __importStar(require("http"));
 const router_1 = require("./router");
@@ -51,6 +52,7 @@ const server = http.createServer(async (req, res) => {
         res.end();
     }
 });
+exports.server = server;
 server.listen(PORT, () => {
     console.log(`server started on port: ${PORT}`);
 });

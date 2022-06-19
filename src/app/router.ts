@@ -28,6 +28,7 @@ export async function router(req: IncomingMessage, res: ServerResponse) {
   else if (req.url === "/api/users" && req.method === "POST") {
     let userData = await getRequestData(req);
     if (typeof userData === "string") {
+      console.log(JSON.parse(userData))
       let user = await new Controller().createUser(JSON.parse(userData));
       res.writeHead(201, { "Content-Type": "application/json" });
       res.end(JSON.stringify(user))

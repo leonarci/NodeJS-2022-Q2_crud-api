@@ -27,13 +27,14 @@ export class Controller {
   async createUser(user: User): Promise<UserWithUuid> {
     return new Promise((resolve, reject) => {
       const { name, age, hobbies } = user;
+      console.log(name, age, hobbies)
       if (name === undefined || age === undefined || hobbies === undefined) {
         reject(new FieldsRequiredError);
       }
       if (typeof name !== "string" ||
         typeof age !== "number" ||
         !Array.isArray(hobbies)) {
-        reject(new Error("all fields are required"))
+        reject(new FieldsRequiredError("invalid data in request"))
       }
       else {
         let newUser = {
@@ -54,7 +55,6 @@ export class Controller {
       } else {
         const { name, age, hobbies } = user;
         if (name === undefined && age === undefined && hobbies === undefined) {
-          console.log(23423)
           reject(new FieldsRequiredError);
         }
         if (typeof name === "string") {
