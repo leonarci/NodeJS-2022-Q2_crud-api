@@ -2,9 +2,12 @@
   "name": "nodejs-2022-q2_crud-api",
   "version": "1.0.0",
   "description": "Assignment: CRUD API for NodeJS 2022 Q2 course at RS School",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start:prod": "tsc && node dist/app.js",
+    "start:dev": "nodemon src/app/app.ts",
+    "start:multi": "node dist/app-cluster.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,21 @@
   "bugs": {
     "url": "https://github.com/leonarci/NodeJS-2022-Q2_crud-api/issues"
   },
-  "homepage": "https://github.com/leonarci/NodeJS-2022-Q2_crud-api#readme"
+  "homepage": "https://github.com/leonarci/NodeJS-2022-Q2_crud-api#readme",
+  "devDependencies": {
+    "@types/jest": "^28.1.2",
+    "@types/node": "^18.0.0",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^8.3.4",
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3",
+    "ts-jest": "^28.0.5",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "uuid": "^8.3.2"
+  }
 }
